@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="80e1ebdd43c54e869910d0e5d710ca85" Name="Diagram1">
+        <EntityTypeShape EntityType="TeachSpaceModel.Audit" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeachSpaceModel.Schedule" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeachSpaceModel.User" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="TeachSpaceModel.FK__Audit__ScheduleI__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="TeachSpaceModel.FK__Audit__UserID__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="TeachSpaceModel.FK__Schedule__UserID__2D27B809" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,115 @@
+﻿<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+body{
+    font-family:sans-serif;
+    width:100%;
+    height: 100vh;
+    overflow-x:hidden;
+}
+
+ul,
+li{
+    list-style-type:none;
+    padding:0;
+}
+
+.side-bar{
+    width:200px;
+    height: 100vh;
+    background-color:#fff;
+    box-shadow:0 0 8px rgb(230,230,230);
+    overflow:hidden;
+    overflow-y:auto;
+    position:relative;
+    padding:10px;
+}
+
+.side-bar .logo{
+    text-align:center;
+    margin-bottom:50px;
+}
+.side-bar .logo a h1{
+    font-size:40px;
+    color:#a09494;
+    font-family:"Righteous";
+
+}
+
+.side-bar .logo a:last-child{
+    display:none;
+}
+.side-bar .side-bar-nav ul li a{
+    display:flex;
+    align-items:center;
+    padding:15px 10px;
+    width:100%;
+    margin:10px 0;
+    transition: .4s;
+}
+    .side-bar .side-bar-nav ul li a:hover{
+        background-color:#B576F6;
+        color:#fff;
+    }
+
+    .side-bar .side-bar-nav ul li a .nav-link {
+        margin-left: 15px;
+    }
+
+
+
+</style>
+
+
+<body>
+    <div class="side-bar">
+        <div class="logo">
+            <a href="#">Teach-Space</a>
+            <a href="#"><img src="~/fonts/img/logo.jpg"></a>
+        </div>
+        <div class="side-bar-nav">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="nav-link">Dashboard</span>
+                        <span><i class="fas fa-home"></i></span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link">Events</span>
+                        <span><i class="fas fa-uikit"></i></span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link">My Courses</span>
+                        <span><i class="fas fa-table"></i></span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link">About Teach-Space</span>
+                        <span><i class="fas fa-wp-forms"></i></span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link">Logout</span>
+                        <span><i class="fas fa-home"></i></span>
+
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+   
+</body>
+

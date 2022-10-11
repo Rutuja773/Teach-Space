@@ -1,0 +1,83 @@
+﻿@model Teach_Space.Models.Response
+
+
+
+
+        .@(Html.Kendo().Grid<Teach_Space.Models.User>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.ID);
+            columns.Bound(p => p.FullName).Width(120);
+            columns.Bound(p => p.Address).Width(120);
+            columns.Bound(p => p.Email).Width(120);
+            columns.Bound(p => p.DOB).Width(120);
+
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+        })
+        .ToolBar(toolbar => toolbar.Create())
+        .Editable(editable => editable.Mode(GridEditMode.PopUp))
+        .Pageable()
+        .Sortable()
+        .Scrollable()
+        .HtmlAttributes(new { style = "height:550px;" })
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .PageSize(20)
+            .Events(events => events.Error("error_handler"))
+            .Model(model => model.Id(p => p.ID))
+            .Create(update => update.Action("EditingPopup_Create", "Home"))
+            .Read(read => read.Action("GetUsers", "Home"))
+            .Update(update => update.Action("EditingPopup_Update", "Home"))
+            .Destroy(update => update.Action("EditingPopup_Destroy", "Home"))
+        )
+    )
+@*$("#Add").kendoGrid({
+     height: 500,
+     columns: [
+         { field: "ID" },
+         { field: "FullName" },
+         { field: "Address" },
+         { field: "Email" },
+         { field: "DOB" }
+
+     ],
+
+
+    dataSource: {
+         type: "aspnetmvc-ajax",
+         autoSync: true,
+         transport: {
+             idField: "ID",
+
+             read: {
+
+                 url: "/api/Users/GetUsers",
+                 type:"GET"
+             }
+         },*@
+@*schema: {
+                data: "Data",
+                model: {
+                    id: "ID",
+                    fields: {
+                        ID: { type: "number" },
+                        FullName: { type: "string" },
+                        Address: { type: "string" },
+                        Email: { type: "number" },
+                        DOB: { type: "string" }
+
+                    }
+                }
+            },
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            serverGrouping: true,
+            serverAggregates: true,
+        },
+        editable: "inline",
+        destroy: true,
+        pageable: true,
+        scrollable: true
+    })*@

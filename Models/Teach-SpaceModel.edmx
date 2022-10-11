@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TeachSpaceMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="InvigilatorID" Type="int" />
+          <Property Name="TopicID" Type="int" />
+          <Property Name="TIME" Type="varchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="MODE" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDatetime" Type="datetime" />
+          <Property Name="UpdatedDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDatetime" Type="datetime" />
+          <Property Name="UpdatedDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="ConfirmPassword" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDatetime" Type="datetime" />
+          <Property Name="UpdatedDatetime" Type="datetime" />
+        </EntityType>
+        <Function Name="sp_CreateSchedule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentID" Type="int" Mode="In" />
+          <Parameter Name="InvigilatorID" Type="int" Mode="In" />
+          <Parameter Name="TopicID" Type="int" Mode="In" />
+          <Parameter Name="Time" Type="varchar" Mode="In" />
+          <Parameter Name="Date" Type="varchar" Mode="In" />
+          <Parameter Name="Mode" Type="varchar" Mode="In" />
+          <Parameter Name="Type" Type="varchar" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_GetSchedules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Type" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_GetUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Type" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="ConfirmPassword" Type="varchar" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_Registeration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FullName" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Address" Type="varchar" Mode="In" />
+          <Parameter Name="UserType" Type="varchar" Mode="In" />
+          <Parameter Name="DOB" Type="date" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="ConfirmPassword" Type="varchar" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="varchar" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="TeachSpaceMDBModelStoreContainer">
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TeachSpaceMDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="InvigilatorID" Type="Int32" />
+          <Property Name="TopicID" Type="Int32" />
+          <Property Name="TIME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="MODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDatetime" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDatetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDatetime" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDatetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDatetime" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDatetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="TeachSpaceMDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Schedules" EntityType="Self.Schedule" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <FunctionImport Name="sp_CreateSchedule">
+            <Parameter Name="StudentID" Mode="In" Type="Int32" />
+            <Parameter Name="InvigilatorID" Mode="In" Type="Int32" />
+            <Parameter Name="TopicID" Mode="In" Type="Int32" />
+            <Parameter Name="Time" Mode="In" Type="String" />
+            <Parameter Name="Date" Mode="In" Type="String" />
+            <Parameter Name="Mode" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetSchedules" ReturnType="Collection(TeachSpaceMDBModel.sp_GetSchedules_Result)">
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetUsers" ReturnType="Collection(TeachSpaceMDBModel.sp_GetUsers_Result)">
+            <Parameter Name="Type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Login" ReturnType="Collection(TeachSpaceMDBModel.sp_Login_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="ConfirmPassword" Mode="In" Type="String" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Registeration">
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="UserType" Mode="In" Type="String" />
+            <Parameter Name="DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="ConfirmPassword" Mode="In" Type="String" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_GetSchedules_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="StudentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Invigilator" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TopicName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CreatedDatetime" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="TIME" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Date" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="MODE" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_GetUsers_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Login_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ConfirmPassword" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedDatetime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDatetime" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TeachSpaceMDBModelStoreContainer" CdmEntityContainer="TeachSpaceMDBEntities">
+          <EntitySetMapping Name="Schedules">
+            <EntityTypeMapping TypeName="TeachSpaceMDBModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="InvigilatorID" ColumnName="InvigilatorID" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="TIME" ColumnName="TIME" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="MODE" ColumnName="MODE" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="UpdatedDatetime" ColumnName="UpdatedDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="TeachSpaceMDBModel.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="UpdatedDatetime" ColumnName="UpdatedDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TeachSpaceMDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="UpdatedDatetime" ColumnName="UpdatedDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_CreateSchedule" FunctionName="TeachSpaceMDBModel.Store.sp_CreateSchedule" />
+          <FunctionImportMapping FunctionImportName="sp_GetSchedules" FunctionName="TeachSpaceMDBModel.Store.sp_GetSchedules">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TeachSpaceMDBModel.sp_GetSchedules_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="Invigilator" ColumnName="Invigilator" />
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="TIME" ColumnName="TIME" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="MODE" ColumnName="MODE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetUsers" FunctionName="TeachSpaceMDBModel.Store.sp_GetUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TeachSpaceMDBModel.sp_GetUsers_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Login" FunctionName="TeachSpaceMDBModel.Store.sp_Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TeachSpaceMDBModel.sp_Login_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="UpdatedDatetime" ColumnName="UpdatedDatetime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Registeration" FunctionName="TeachSpaceMDBModel.Store.sp_Registeration" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

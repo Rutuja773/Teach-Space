@@ -1,0 +1,200 @@
+﻿
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+        width: 100%;
+        height: 100vh;
+        overflow-x: hidden;
+    }
+
+    ul,
+    li {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .side-bar {
+        width: 200px;
+        height: 100vh;
+        background-color: #fff;
+        box-shadow: 0 0 8px rgb(230,230,230);
+        overflow: hidden;
+        overflow-y: auto;
+        position: fixed;
+        padding: 10px;
+    }
+
+        .side-bar .logo {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+            .side-bar .logo a h1 {
+                font-size: 40px;
+                color: #a09494;
+                font-family: "Righteous";
+            }
+
+            .side-bar .logo a:last-child {
+                display: none;
+            }
+
+        .side-bar .side-bar-nav ul li a {
+            display: flex;
+            align-items: center;
+            padding: 15px 10px;
+            width: 100%;
+            margin: 10px 0;
+            transition: .4s;
+        }
+
+            .side-bar .side-bar-nav ul li a:hover {
+                background-color: #B576F6;
+                color: #fff;
+            }
+
+            .side-bar .side-bar-nav ul li a .nav-link {
+                margin-left: 15px;
+            }
+
+            header{
+                margin-left:250px;
+                padding:15px;
+            }
+</style>
+
+
+<body>
+    <div class="side-bar">
+        <div class="logo">
+            <a href="#">Teach-Space</a>
+            <a href="#"><img src="~/fonts/img/logo.jpg"></a>
+        </div>
+        <div id="tabstrip">
+            <ul>
+                <li id="tab1">Schedule</li>
+
+            </ul>
+        </div>
+
+        @*<div>
+            <div class="side-bar-nav">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="nav-link">Dashboard</span>
+                            <span><i class="fas fa-home"></i></span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="nav-link">Events</span>
+                            <span><i class="fas fa-uikit"></i></span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="nav-link">My Courses</span>
+                            <span><i class="fas fa-table"></i></span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="nav-link">About Teach-Space</span>
+                            <span><i class="fas fa-wp-forms"></i></span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="nav-link">LogOut</span>
+                            <span><i class="fas fa-home"></i></span>
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>*@
+
+    </div>
+    <header>
+
+
+
+        @(Html.Kendo().Grid<Teach_Space.Models.Schedule>()
+            .Name("grid")
+            .Columns(columns =>
+            {
+                //columns.Bound(p => p.ID);
+                columns.Bound(p => p.UserID).Width(120);
+                columns.Bound(p => p.Topic).Width(120);
+                columns.Bound(p => p.Date).Width(120);
+                columns.Bound(p => p.Time).Width(120);
+                columns.Bound(p => p.MODE).Width(120);
+                columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+            })
+            .ToolBar(toolbar => toolbar.Create())
+            .Editable(editable => editable.Mode(GridEditMode.InLine).ConfirmDelete("Continue to delete this record?").DisplayDeleteConfirmation("Continue to delete this record?"))
+            .Pageable()
+            .Sortable()
+            .Scrollable()
+            .HtmlAttributes(new { style = "height:550px;" })
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .PageSize(20)
+                .Events(events => events.Error("error_handler"))
+                .Model(model => model.Id(p => p.ID))
+                .Create(update => update.Action("CreateSchedule", "Home"))
+                .Read(read => read.Action("EditingInline_Read", "Grid"))
+                .Update(update => update.Action("CreateSchedule", "Home"))
+                .Destroy(update => update.Action("EditingInline_Destroy", "Grid"))
+            )
+        )
+        <script type="text/javascript">
+            function error_handler(e) {
+                if (e.errors) {
+                    var message = "Errors:\n";
+                    $.each(e.errors, function (key, value) {
+                        if ('errors' in value) {
+                            $.each(value.errors, function () {
+                                message += this + "\n";
+                            });
+                        }
+                    });
+                    alert(message);
+                }
+            }
+        </script>
+        <script>
+            $("#tabstrip").kendoTabStrip().data("kendoTabStrip")
+        </script>
+       
+
+
+    </header>
+
+</body>
+
+
+@*<div id="tabstrip">
+       <ul>
+           <li id="tab1">Schedule</li>
+           <div>
+           </div>
+           <li>Know More</li>
+
+       </ul>
+    <div>
+
+           <script>
+               $("#tabstrip").kendoTabStrip().data("kendoTabStrip")
+           </script>*@
